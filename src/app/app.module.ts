@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CounterModule } from './modules/counter/counter.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TodoModule } from './modules/todo/todo.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { TodosData } from './modules/todo/services/api/fake-todos-data';
 
 @NgModule({
   declarations: [
@@ -10,7 +16,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(TodosData, { delay: 500, put204: false }),
+    CounterModule,
+    TodoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
